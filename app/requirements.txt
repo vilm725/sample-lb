@@ -1,0 +1,8 @@
+Click
+itsdangerous
+Jinja2
+MarkupSafe
+Werkzeug
+xmlrunner
+Flask
+Flask-WTF
