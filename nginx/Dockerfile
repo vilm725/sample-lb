@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:stable
 
 # Override the default nginx configuration file
 RUN rm /etc/nginx/conf.d/default.conf
