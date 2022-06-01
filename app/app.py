@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     # Display message
-    return "<center><h3>Welcome to GFG</h3></center>"
+    return "<center><h1>👨🏻‍💻 Cursus DevOps 2022 🚀 </h1></center>"
 
 if __name__ == '__main__':
     app.run('0.0.0.0')
