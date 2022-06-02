@@ -1,15 +1,12 @@
 version: "3"
 
 services:
-  # Build the app services
   app:
     build: app
   nginx:
     container_name: nginx
     build: nginx
-    # Bind the port 80 of container to machine port 80
     ports:
-      - 8080:8080
-    # Make app as nginx dependecy service
+      - 80:80
     depends_on:
       - app
