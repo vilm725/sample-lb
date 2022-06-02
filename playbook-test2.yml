@@ -1,0 +1,33 @@
+---
+- name: Déploiement Flask web app 🚀
+  user: admin
+  hosts: vmawsflaskapp
+  tasks:
+  - name: 📁 Installation de modules
+    apt:
+      name:
+        - python3-dev
+        - python3-pip
+        - python3-setuptools
+        - docker-compose
+    become: yes
+  - name: 🐍 Installation du module docker pour python (faculatatif)
+    shell: "sudo python3 -m pip install docker && sudo python3 -m pip install docker-compose"
+    become: yes
+  - name: 🆑 Supprimer les anciens fichiers
+    shell: "rm -rf /home/admin/sample-lb/*"
+  - name: ☁ Importer le git
+    git:
+      repo: https://github.com/vilm725/sample-lb.git
+      dest: /home/admin/sample-lb
+      version: "master"
+      force: yes
+      clone: yes
+  - name: 🐳 Arrêt de l'application 
+    shell: "docker system prune --all -f && docker kill $(docker ps -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)"
+    args:
+      chdir: /home/admin/sample-lb
+  - name: 🐳 Deploiement du conteneur avec l'application
+    shell: "sudo docker-compose up --build -d --scale app=3"
+    args:
+      chdir: /home/admin/sample-lb
