@@ -29,5 +29,8 @@
       chdir: /home/admin/sample-lb
   - name: 🐳 Deploiement du conteneur avec l'application
     shell: "sudo docker-compose up --build -d --scale app=3"
+    register: dockercreatedebug
     args:
       chdir: /home/admin/sample-lb
+  - debug: var=dockercreatedebug.stdout_lines
+
