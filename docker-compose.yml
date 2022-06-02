@@ -9,7 +9,7 @@ services:
     build: nginx
     # Bind the port 80 of container to machine port 80
     ports:
-      - 80:80
+      - 8080:8080
     # Make app as nginx dependecy service
     depends_on:
       - app
